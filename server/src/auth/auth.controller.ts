@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { RegisterUserDto } from './dto/register.dto';
 import { JwtAuthGuard } from './guards/jwt-auth-guard';
 import {CurrentUser} from './decorators/current-user.decorator';
+import { LoginUserDto } from './dto/login.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -18,6 +19,11 @@ export class AuthController {
     @UseGuards(JwtAuthGuard)
     getProfile(@CurrentUser() user) {
         return user;
+    }
+
+    @Post('login')
+    async login(@Body() loginDto: LoginUserDto) {
+        return this.authService.login(loginDto);
     }
 
 }

@@ -905,3 +905,121 @@ Response
 
 **"Should this request be authenticated before entering the controller?"**
 
+
+
+**The guard doesn't know how JWT authentication works.**
+
+
+
+**It simply delegates to Passport.**
+
+
+
+
+
+
+
+* ### **The logout problem**
+
+
+
+**Suppose:**
+
+
+
+**10:00**
+
+
+
+**JWT issued**
+
+
+
+**↓**
+
+
+
+**Valid until 11:00**
+
+
+
+**At 10:15:**
+
+
+
+**User clicks Logout**
+
+
+
+**Can the server "delete" that JWT?**
+
+
+
+**No.**
+
+**Because the JWT isn't stored anywhere.**
+
+**It's just a signed string.**
+
+**The server has nothing to delete.**
+
+**This is the consequence of stateless authentication.**
+
+
+
+
+
+* ### **Solution ---> Refresh Token Revocation (Most common in production)**
+
+
+
+**This is what many large systems do.**
+
+
+
+**Remember our earlier discussion:**
+
+
+
+**Access Token**
+
+**↓**
+
+
+
+**15 minutes**
+
+**Refresh Token**
+
+**↓**
+
+
+
+**30 days**
+
+
+
+**On logout:**
+
+
+
+**Delete Refresh Token from database**
+
+
+
+**Now:**
+
+
+
+**The current access token may still work until it expires.**
+
+**After 15 minutes, it expires.**
+
+**Since the refresh token has been revoked, the client cannot obtain a new access token.**
+
+**The user is effectively logged out.**
+
+
+
+**This gives a good balance between performance and security.**
+
