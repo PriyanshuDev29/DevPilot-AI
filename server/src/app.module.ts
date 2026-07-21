@@ -8,6 +8,8 @@ import { RepositoryModule } from './repository/repository.module';
 import { AiModule } from './ai/ai.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
+import { GithubModule } from './github/github.module';
+import { AppException } from './common/exceptions/app.exception';
 
 @Module({
   imports: [
@@ -15,7 +17,7 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true
     }),
     MongooseModule.forRoot(process.env.MONGODB_URI as string),
-    AuthModule, UsersModule, ProjectsModule, RepositoryModule, AiModule],
+    AuthModule, UsersModule, ProjectsModule, RepositoryModule, AiModule, GithubModule, ],
   controllers: [AppController],
   providers: [AppService],
 })
