@@ -1011,15 +1011,56 @@ Response
 
 
 
-**The current access token may still work until it expires.**
-
-**After 15 minutes, it expires.**
-
-**Since the refresh token has been revoked, the client cannot obtain a new access token.**
-
-**The user is effectively logged out.**
+1. **The current access token may still work until it expires.**
+2. **After 15 minutes, it expires.**
+3. **Since the refresh token has been revoked, the client cannot obtain a new access token.**
+4. **The user is effectively logged out.**
 
 
 
 **This gives a good balance between performance and security.**
+
+
+
+
+
+* **A common backend principle is:**
+
+**Accept many formats, store one format.**
+
+**That's called canonicalization.**
+
+
+
+
+
+* ### **What is a compound index?**
+
+
+
+**It means MongoDB considers the combination of the fields.**
+
+**Think of it like a composite key.**
+
+**Instead of checking:**
+
+**repositoryIdentifier**
+
+**it checks:**
+
+**(user, repositoryIdentifier)**
+
+
+
+
+
+
+
+* **Each element is a Dirent object.**
+
+**A Dirent tells us -->**
+
+1. **name**
+2. **isDirectory()**
+3. **isFile()**
 

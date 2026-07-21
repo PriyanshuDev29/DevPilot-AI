@@ -10,7 +10,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 @Module({
   controllers: [AuthController],
   providers: [AuthService,JwtStrategy],
-  imports: [UsersModule,
+  imports: [UsersModule,                  // Importing UsersModule to use UsersService in AuthService.
     JwtModule.registerAsync({
   inject: [ConfigService],
   useFactory: (config: ConfigService) => ({
@@ -19,7 +19,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       expiresIn: '1h',
     },
   }),
-}),             // Importing UsersModule to use UsersService in AuthService.
+}),          
   PassportModule.register({               // Importing PassportModule to use JWT strategy for authentication.
   defaultStrategy: 'jwt',
   })
