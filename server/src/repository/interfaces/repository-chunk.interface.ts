@@ -1,4 +1,4 @@
-export interface RepositoryPath {
+export interface RepositoryChunk{
     relativePath: string;
     content: string;
 }

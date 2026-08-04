@@ -80,12 +80,6 @@ export class RepositoryService {
 
         const repository = await this.findRepository(userId, repositoryId);
 
-        const localPath = await this.repositoryAnalysisService.analyseRepository(repository);
-
-        repository.localPath = localPath;
-
-        repository.status = RepositoryStatus.ANALYZING;
-
-        await repository.save();
+        await this.repositoryAnalysisService.analyseRepository(repository);
     }
 }

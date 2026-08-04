@@ -9,14 +9,17 @@ import { RepositoryAnalysisService } from './services/repository-analysis.servic
 import { RepositoryCloneService } from './services/repository-clone.service';
 import { RepositoryTraversalService } from './services/repository-traversal.service';
 import { RepositoryFileReaderService } from './services/repository-reader-file.service';
+import { EmbeddingModule } from 'src/embedding/embedding.module';
+import { RepositoryChunkingService } from './services/repository-chunking.service';
 
 @Module({
   imports: [GithubModule,
-    MongooseModule.forFeature([{ name: 'Repository', schema: RepositorySchema }])
+    MongooseModule.forFeature([{ name: 'Repository', schema: RepositorySchema }]),
+    EmbeddingModule
   ],
   controllers: [RepositoryController],
   providers: [RepositoryService, RepositoryUrlService, RepositoryCloneService, RepositoryAnalysisService, RepositoryTraversalService,
-    RepositoryFileReaderService
+    RepositoryFileReaderService, RepositoryChunkingService
   ],
 })
 export class RepositoryModule {}
